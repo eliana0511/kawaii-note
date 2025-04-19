@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Kawaii To-Do</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background-color: #ffe6f2;
+      font-family: 'Comic Sans MS', cursive, sans-serif;
+    }
+
+    .container {
+      position: relative;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    .background {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .title {
+      position: absolute;
+      top: 140px;
+      left: 200px;
+      width: 70%;
+      background: transparent;
+      border: none;
+      outline: none;
+      font-size: 22px;
+      font-weight: bold;
+      color: #fff;
+      text-shadow: 1px 1px 2px #bd4e87;
+    }
+
+    #tasks {
+      position: absolute;
+      top: 200px;
+      left: 60px;
+      width: 80%;
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+
+    .task-line {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .heart-icon {
+      width: 20px;
+      height: 20px;
+      cursor: pointer;
+    }
+
+    .task-input {
+      flex: 1;
+      background: transparent;
+      border: none;
+      outline: none;
+      font-size: 18px;
+      color: #4b1e4b;
+      padding: 5px 0;
+    }
+
+    .add-btn {
+      position: absolute;
+      bottom: 40px;
+      left: 50%;
+      transform: translateX(-50%);
+      padding: 8px 20px;
+      background-color: #f99acb;
+      border: none;
+      border-radius: 12px;
+      font-size: 18px;
+      color: white;
+      cursor: pointer;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    }
+
+    .add-btn:hover {
+      background-color: #e57bb0;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <img src="note-sheet.png" class="background" />
+
+    <input class="title" placeholder="Title your list here..." />
+    <div id="tasks"></div>
+    <button class="add-btn" onclick="addTask()">+ Add</button>
+  </div>
+
+  <script>
+    function addTask() {
+      const tasksDiv = document.getElementById("tasks");
+
+      const taskLine = document.createElement("div");
+      taskLine.classList.add("task-line");
+
+      const heart = document.createElement("img");
+      heart.src = "heart-empty.png";
+      heart.classList.add("heart-icon");
+
+      heart.addEventListener("click", () => {
+        heart.src = heart.src.includes("heart-empty.png")
+          ? "heart-filled.png"
+          : "heart-empty.png";
+      });
+
+      const input = document.createElement("input");
+      input.type = "text";
+      input.placeholder = "Write something cute...";
+      input.classList.add("task-input");
+
+      taskLine.appendChild(heart);
+      taskLine.appendChild(input);
+      tasksDiv.appendChild(taskLine);
+    }
+  </script>
+
+</body>
+</html>
